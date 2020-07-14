@@ -10,4 +10,10 @@ router.post("/addLocation",userValidate.checkIfLocationExists,locationController
 
 router.post("/addCandidate",userValidate.checkIfCandidateExists,candidateController.addCandidate);
 
+router.get('/getUser',userController.getUser);
+
+router.put('/addVote',candidateController.addVote);
+
+router.get('/result',candidateController.getResult);
+
 module.exports=router;

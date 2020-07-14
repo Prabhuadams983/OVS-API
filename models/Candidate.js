@@ -4,7 +4,7 @@ const schema = mongoose.Schema({
     candidateId:{
         type:String
     },
-    name:{
+    candidateName:{
         type:String
     },
     location:{
@@ -15,7 +15,12 @@ const schema = mongoose.Schema({
         type:String
     },
     voteCount:{
-        type:Number
+        type:Number,
+        default:0
+    },
+    userType:{
+        type:String,
+        default:'C'
     }
 });
 
