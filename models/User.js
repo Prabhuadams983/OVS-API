@@ -6,24 +6,30 @@ const schema = mongoose.Schema({
         trim:true
     },
     aadharId:{
-        type:Number,
-        unique:true
+        type:Number
     },
     age:{
         type:Number,
         min:18
     },
     dob:{
-        type:Date
+        type:Date,
+        default:Date.now()
     },
     location:{
-        type:Number
+        type:mongoose.Schema.Types.ObjectId,
+        ref : 'Locations'
     },
     gender:{
         type:String
     },
     hasVoted:{
-        type:Boolean
+        type:Boolean,
+        default:false
+    },
+    userType:{
+        type:String,
+        default:'U'
     }
 });
 
