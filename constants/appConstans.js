@@ -6,5 +6,6 @@ module.exports={
     LOCATION_ID_EXISTS:'Location Id Exists',
     CANDIDATE_ADDED:'Candidate Added',
     CANDIDATE_ID_EXISTS:'Candidate Id Exists',
-    VOTE_CASTED:"Your vote has been casted"
+    VOTE_CASTED:"Your vote has been casted",
+    CANNOT_VOTE_AGAIN:"Your vote has been casted you cannot vote again"
 }
