@@ -2,6 +2,7 @@ const Candidate = require('../models/Candidate');
 const constants = require('../constants/appConstans');
 const locationController = require('../controllers/locationController');
 const userController = require('../controllers/userController');
+const User = require('../models/User');
 
 exports.addCandidate = (request, response, next) => {
     const candidateData = request.body;
@@ -18,20 +19,32 @@ exports.addCandidate = (request, response, next) => {
 exports.addVote = (request,response,next)=>{
     const {id,aadharId} = request.body;
 
-    Candidate.findOne({'candidateId':id},(err,candidate)=>{
-        if(err){
-            next({'msg':constants.COMMON_ERROR});
-        }else{
-            candidate.voteCount++;
-            candidate.save((err,success)=>{
-                if(err){
-                    next({'msg':constants.COMMON_ERROR});
-                }else{
-                    userController.updateVoteFlag(aadharId,response,next);
-                }
-            })
-        }
-    })
+    User.findOne({'aadharId':aadharId})
+        .then((user)=>{
+            if(user.hasVoted){
+                next({'status':200,'msg':constants.CANNOT_VOTE_AGAIN});    
+            }else{
+                Candidate.findOne({'candidateId':id},(err,candidate)=>{
+                    if(err){
+                        next({'msg':constants.COMMON_ERROR});
+                    }else{
+                        candidate.voteCount++;
+                        candidate.save((err,success)=>{
+                            if(err){
+                                next({'msg':constants.COMMON_ERROR});
+                            }else{
+                                userController.updateVoteFlag(aadharId,response,next);
+                            }
+                        })
+                    }
+                })
+            }
+        })
+        .catch((err) => {
+            next({'status':500,'msg':constants.COMMON_ERROR})
+        });
+
+   
 }
 
 exports.getResult = (request,response,next)=>{
