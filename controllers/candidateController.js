@@ -67,3 +67,12 @@ exports.getResult = (request,response,next)=>{
                  }
              })
 }
+
+exports.uploadImage = (request,response,next)=>{
+    if(!request.file){
+        next({'msg':constants.COMMON_ERROR});
+    }else{
+        var filePath = "http://localhost:7781/" + request.file.destination + request.file.filename;
+        return response.send(filePath);
+    }
+}
