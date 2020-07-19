@@ -21,6 +21,12 @@ const schema = mongoose.Schema({
     userType:{
         type:String,
         default:'C'
+    },
+    partyName:{
+        type:String
+    },
+    partyLogo:{
+        type:String
     }
 });
 

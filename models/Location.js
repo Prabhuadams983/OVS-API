@@ -5,7 +5,7 @@ const schema = mongoose.Schema({
         type: String
     },
     locationId:{
-        type:Number,
+        type:String,
         unique:true
     },
     candidates: [
