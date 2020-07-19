@@ -9,7 +9,7 @@ exports.addLocation = (request,response,next)=>{
         if(err){
             next({'msg':constants.COMMON_ERROR});
         }else{
-            return response.send({'status':200,'msg':constants.LOCATION_ADDED});
+            return response.send({'status':200,'locations':success});
         }
     });
 }
