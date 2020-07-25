@@ -73,6 +73,6 @@ exports.uploadImage = (request,response,next)=>{
         next({'msg':constants.COMMON_ERROR});
     }else{
         var filePath = "http://localhost:7781/" + request.file.destination + request.file.filename;
-        return response.send(filePath);
+        return response.send({'status':200,'file':filePath});
     }
 }

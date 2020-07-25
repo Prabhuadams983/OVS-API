@@ -9,7 +9,7 @@ exports.addLocation = (request,response,next)=>{
         if(err){
             next({'msg':constants.COMMON_ERROR});
         }else{
-            return response.send({'status':200,'locations':success});
+           return response.send({'status':200,'msg':constants.LOCATION_ADDED});
         }
     });
 }
@@ -54,4 +54,12 @@ exports.populateCandidates = (user,response,next)=>{
                         .catch(err => next({'msg':constants.COMMON_ERROR}));
             }
         });
+}
+
+exports.getLocations = (request,response,next)=>{
+    Location.find({})
+            .then((locations)=>{
+                return response.send({'locations':locations})
+            })
+            .catch((err) => next({'msg':constants.COMMON_ERROR}));
 }
