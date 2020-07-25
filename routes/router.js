@@ -19,4 +19,6 @@ router.get('/result',candidateController.getResult);
 
 router.post('/upload',upload.single('image'),candidateController.uploadImage);
 
+router.get('/getLocations',locationController.getLocations);
+
 module.exports=router;

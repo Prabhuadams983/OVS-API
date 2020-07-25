@@ -11,9 +11,6 @@ const schema = mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref : 'Locations'
     },
-    gender:{
-        type:String
-    },
     voteCount:{
         type:Number,
         default:0
