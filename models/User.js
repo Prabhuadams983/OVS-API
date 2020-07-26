@@ -12,16 +12,9 @@ const schema = mongoose.Schema({
         type:Number,
         min:18
     },
-    dob:{
-        type:Date,
-        default:Date.now()
-    },
     location:{
         type:mongoose.Schema.Types.ObjectId,
         ref : 'Locations'
-    },
-    gender:{
-        type:String
     },
     hasVoted:{
         type:Boolean,

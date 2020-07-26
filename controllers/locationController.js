@@ -49,7 +49,7 @@ exports.populateCandidates = (user,response,next)=>{
                 user.populate('location.candidates')
                         .execPopulate()
                         .then((doc)=>{
-                            return response.send(doc);
+                            return response.send({'status':200,'user':doc});
                         })
                         .catch(err => next({'msg':constants.COMMON_ERROR}));
             }
