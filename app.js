@@ -12,7 +12,7 @@ app.use("/ovs/api",require('./routes/router'));
 
 app.use(function(err,req,res,next){
     let status = err.status || 500;
-    res.send({"status":status,'msg':err.msg});
+    res.status(status).send({"status":status,'msg':err.msg});
 });
 app.listen(7781);
 
