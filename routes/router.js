@@ -4,6 +4,7 @@ const userValidate = require('../middlewares/validator');
 const locationController = require('../controllers/locationController');
 const candidateController = require('../controllers/candidateController');
 const upload = require('../middlewares/multer-config');
+const adminController = require('../controllers/adminController');
 
 router.post('/addUser',userValidate.checkIfUserExists,userController.addUser);
 
@@ -20,5 +21,7 @@ router.get('/result',candidateController.getResult);
 router.post('/upload',upload.single('image'),candidateController.uploadImage);
 
 router.get('/getLocations',locationController.getLocations);
+
+router.post('/login',adminController.loginAdmin);
 
 module.exports=router;
