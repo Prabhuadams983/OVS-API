@@ -3,7 +3,7 @@ const constants = require('../constants/appConstans');
 
 exports.encryptPassword = (password, next) => {
    return new Promise((resolve,reject)=>{
-    bcrypt.genSalt(10)
+    bcrypt.genSalt(60)
     .then((salt)=>{
      bcrypt.hash(password,salt)
          .then((hashedPassword)=>{
