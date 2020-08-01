@@ -6,6 +6,7 @@ const candidateController = require('../controllers/candidateController');
 const upload = require('../middlewares/multer-config');
 const adminController = require('../controllers/adminController');
 
+
 router.post('/addUser',userValidate.checkIfUserExists,userController.addUser);
 
 router.post("/addLocation",userValidate.checkIfLocationExists,locationController.addLocation);
@@ -23,5 +24,7 @@ router.post('/upload',upload.single('image'),candidateController.uploadImage);
 router.get('/getLocations',locationController.getLocations);
 
 router.post('/login',adminController.loginAdmin);
+
+router.post('/signUp',userValidate.checkIfEmailExists,adminController.signUpAdmin);
 
 module.exports=router;

@@ -2,6 +2,7 @@ const User = require('../models/User');
 const constants = require('../constants/appConstans');
 const Location = require('../models/Location');
 const Candidate = require('../models/Candidate');
+const Admin = require('../models/Admin');
 
 exports.checkIfUserExists = (request,response,next)=>{
     const {aadharId} = request.body;
@@ -48,3 +49,16 @@ exports.checkIfCandidateExists = (request,response,next)=>{
     });
 }
 
+exports.checkIfEmailExists = (request,response,next) =>{
+    Admin.findOne({'emailId':request.emailId},(err,success)=>{
+        if(err){
+            next({'msg':constants.COMMON_ERROR});
+        }
+        if(success){
+            next({'status':400,'msg':constants.EMAIL_EXISTS})
+        }else{
+            next();
+        }
+
+    });
+}

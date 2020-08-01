@@ -1,13 +1,14 @@
 const mongoose = require('mongoose');
 
 const adminSchema = mongoose.Schema({
+    name:{
+        type:String
+    },
     emailId:{
-        type:String,
-        default:'admin@mailinator.com'
+        type:String
     },
     password:{
-        type:String,
-        default:'Welcome@123'
+        type:String
     }
 });
 
