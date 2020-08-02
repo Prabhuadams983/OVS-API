@@ -9,6 +9,8 @@ module.exports={
     VOTE_CASTED:"Your vote has been casted",
     CANNOT_VOTE_AGAIN:"Your vote has been casted you cannot vote again",
     INVALID_USER:"Invalid User",
-    UNAUTHORIZED:"Invalid Password, please try again",
-    EMAIL_EXISTS:"E-mail is registered already"
+    INVALID_PASSWORD:"Invalid Password, please try again",
+    EMAIL_EXISTS:"E-mail is registered already",
+    UNAUTHORIZED:"Session expired, please login again"
+    
 }
