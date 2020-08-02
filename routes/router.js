@@ -5,23 +5,23 @@ const locationController = require('../controllers/locationController');
 const candidateController = require('../controllers/candidateController');
 const upload = require('../middlewares/multer-config');
 const adminController = require('../controllers/adminController');
+const {verifyJWT} = require('../helpers/auth');
 
+router.post('/addUser',userValidate.checkIfUserExists,verifyJWT,userController.addUser);
 
-router.post('/addUser',userValidate.checkIfUserExists,userController.addUser);
+router.post("/addLocation",userValidate.checkIfLocationExists,verifyJWT,locationController.addLocation);
 
-router.post("/addLocation",userValidate.checkIfLocationExists,locationController.addLocation);
-
-router.post("/addCandidate",userValidate.checkIfCandidateExists,candidateController.addCandidate);
+router.post("/addCandidate",userValidate.checkIfCandidateExists,verifyJWT,candidateController.addCandidate);
 
 router.get('/getUser',userController.getUser);
 
-router.put('/addVote',candidateController.addVote);
+router.put('/addVote',verifyJWT,candidateController.addVote);
 
 router.get('/result',candidateController.getResult);
 
-router.post('/upload',upload.single('image'),candidateController.uploadImage);
+router.post('/upload',verifyJWT,upload.single('image'),candidateController.uploadImage);
 
-router.get('/getLocations',locationController.getLocations);
+router.get('/getLocations',verifyJWT,locationController.getLocations);
 
 router.post('/login',adminController.loginAdmin);
 

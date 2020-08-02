@@ -7,7 +7,11 @@ const cors = require('cors');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
-app.use(cors());
+app.use(cors({
+    methods:'GET,PUT,POST',
+    exposedHeaders:'X-Access-Token',
+    
+}));
 app.use('/public/image',express.static('public/image'));
 app.use("/ovs/api",require('./routes/router'));
 
