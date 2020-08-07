@@ -41,6 +41,9 @@ exports.updateLocation = (document, response) => {
 }
 
 exports.populateCandidates = (user, response, next) => {
+    if(!user._id){
+        next({ "msg": constants.COMMON_ERROR });
+    }
     User.findOne({ '_id': user._id })
         .populate('location')
         .exec((err, user) => {

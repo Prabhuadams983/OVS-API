@@ -22,7 +22,7 @@ exports.loginAdmin = async (request, response, next) => {
                     generateJWT(adminObj,next)
                         .then((token)=>{
                             response.setHeader('X-Access-Token',token);
-                            return response.send({ 'status': 200 });
+                            return response.send({ 'status': 200,'admin':adminObj });
                         })
                         .catch((err) => next({ 'status': 401, 'msg': constants.UNAUTHORIZED }));        
                 })
