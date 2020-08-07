@@ -9,11 +9,11 @@ const {verifyJWT} = require('../helpers/auth');
 
 router.post('/addUser',userValidate.checkIfUserExists,verifyJWT,userController.addUser);
 
-router.post("/addLocation",userValidate.checkIfLocationExists,verifyJWT,locationController.addLocation);
+router.post("/addLocation",verifyJWT,userValidate.checkIfLocationExists,locationController.addLocation);
 
 router.post("/addCandidate",userValidate.checkIfCandidateExists,verifyJWT,candidateController.addCandidate);
 
-router.get('/getUser',userController.getUser);
+router.post('/getUser',userController.getUser);
 
 router.put('/addVote',verifyJWT,candidateController.addVote);
 
@@ -21,7 +21,7 @@ router.get('/result',candidateController.getResult);
 
 router.post('/upload',verifyJWT,upload.single('image'),candidateController.uploadImage);
 
-router.get('/getLocations',verifyJWT,locationController.getLocations);
+router.get('/getLocations',locationController.getLocations);
 
 router.post('/login',adminController.loginAdmin);
 

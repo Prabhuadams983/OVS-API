@@ -5,18 +5,18 @@ const app = express();
 const db = require('./database/db');
 const cors = require('cors');
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit:"100mb"}));
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(cors({
     methods:'GET,PUT,POST',
-    exposedHeaders:'X-Access-Token',
-    
+    exposedHeaders:'X-Access-Token'
 }));
 app.use('/public/image',express.static('public/image'));
 app.use("/ovs/api",require('./routes/router'));
 
 app.use(function(err,req,res,next){
     let status = err.status || 500;
+    res.header("Access-Control-Allow-Origin", "*");
     res.status(status).send({"status":status,'msg':err.msg});
 });
 app.listen(7781);
