@@ -13,7 +13,7 @@ router.post("/addLocation",verifyJWT,userValidate.checkIfLocationExists,location
 
 router.post("/addCandidate",userValidate.checkIfCandidateExists,verifyJWT,candidateController.addCandidate);
 
-router.post('/getUser',userController.getUser);
+router.post('/getUser',userValidate.checkIfVoted,userController.getUser);
 
 router.put('/addVote',verifyJWT,candidateController.addVote);
 
@@ -21,7 +21,7 @@ router.get('/result',candidateController.getResult);
 
 router.post('/upload',verifyJWT,upload.single('image'),candidateController.uploadImage);
 
-router.get('/getLocations',locationController.getLocations);
+router.get('/getLocations',verifyJWT,locationController.getLocations);
 
 router.post('/login',adminController.loginAdmin);
 

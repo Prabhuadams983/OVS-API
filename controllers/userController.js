@@ -15,7 +15,7 @@ exports.addUser = (request,response,next)=>{
 }
 
 exports.getUser = (request,response,next)=>{
-    const aadharId = request.query.aadharId;
+    const aadharId = request.body.aadharId;
 
     User.findOne({"aadharId":aadharId},(err,user)=>{
         if(err){

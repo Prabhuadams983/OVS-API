@@ -62,3 +62,17 @@ exports.checkIfEmailExists = (request,response,next) =>{
 
     });
 }
+
+exports.checkIfVoted = (request,response,next)=>{
+    const {aadharId} = request.body;
+    User.findOne({'aadharId':aadharId},(err,user)=>{
+        if(err){
+            next({'msg':constants.COMMON_ERROR});
+        }
+        if(user.hasVoted){
+            next({'status':202,'msg':constants.CANNOT_VOTE_AGAIN});
+        }else{
+            next();
+        }
+    })
+}
