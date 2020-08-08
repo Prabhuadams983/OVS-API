@@ -17,7 +17,12 @@ app.use("/ovs/api",require('./routes/router'));
 app.use(function(err,req,res,next){
     let status = err.status || 500;
     res.header("Access-Control-Allow-Origin", "*");
-    res.status(status).send({"status":status,'msg':err.msg});
+    if(status == 202){
+        res.status("200").send({"status":"200",'msg':err.msg,'isVoted':true});
+    }else{
+        res.status(status).send({"status":status,'msg':err.msg});
+    }
+    
 });
 app.listen(7781);
 

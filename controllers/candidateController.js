@@ -24,7 +24,7 @@ exports.addVote = (request,response,next)=>{
             if(user.hasVoted){
                 next({'status':200,'msg':constants.CANNOT_VOTE_AGAIN});    
             }else{
-                Candidate.findOne({'candidateId':id},(err,candidate)=>{
+                Candidate.findOne({'_id':id},(err,candidate)=>{
                     if(err){
                         next({'msg':constants.COMMON_ERROR});
                     }else{
